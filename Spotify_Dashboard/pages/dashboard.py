@@ -18,7 +18,7 @@ def load_data():
 df = load_data()
 
 #-------------------Show data preview----------------------------------------------------------------
-st.title("Spotify Dashboard of A Comprehensive Collection of Tracks Across Various Genres")
+st.markdown(""" <h1 style="color:lightgreen;">🎧Spotify Dashboard | A Comprehensive Collection of Tracks Across Various Genres🎼</h1>""", unsafe_allow_html = True)
 st.header("Explore the World of Music with Our Extensive Spotify Dataset")
 st.write("This dashboard provides insights into a wide range of tracks, including their popularity, genres, and audio features. You can explore the dataset to discover trends and patterns in music.")
 st.dataframe(df.head(101))
@@ -48,7 +48,7 @@ elif explicit_filter == 'Non-Explicit':
     filtered_data = filtered_data[filtered_data['explicit'] == False]
 
 # -------------Popularity Distribution-----------------------------------------------
-st.subheader("🌟 Popularity Distribution")
+st.subheader("Histogram:🌟 Popularity Distribution")
 # graph 1. Histogram of Popularity with a box plot marginal
 fig_pop = px.histogram(filtered_data, 
                        x="popularity", 
@@ -60,8 +60,7 @@ st.plotly_chart(fig_pop, use_container_width=True)
 
 #-----------------Track Duration-------------------------------------------------
 #subheader for track duration
-st.subheader("⏱️ Average Duration per Genre (in minutes)")
-
+st.subheader("Bar Chart:⏱️ Average Duration per Genre (in minutes)")
 
 df_duration = filtered_data.copy() # Create a new DataFrame for duration analysis
 df_duration['duration_min'] = df_duration['duration_ms'] / 60000 # Convert duration from milliseconds to minutes and calculate average duration per genre
@@ -79,10 +78,12 @@ st.plotly_chart(fig_duration, use_container_width=True)
 
 #-------------------🧑‍🎤 Top Artists by Track Count----------------------------------------
 #subheader for top artists
-st.subheader("🎤 Top Artists by Number of Tracks")
+st.subheader("Bar Chart:🎤 Top Artists by Number of Tracks")
 
 # Expand the artists column for multiple entries
+# Drop NaN values, split by comma, and explode the DataFrame to get individual artists
 all_artists = df['artists'].dropna().str.split(",").explode().str.strip()
+
 top_artists = all_artists.value_counts().head(10).reset_index()
 top_artists.columns = ['artist', 'track_count']
 
@@ -96,7 +97,7 @@ st.plotly_chart(fig_artists, use_container_width=True)
 
 #------------------Popular vs Explicit Breakdown---------------------------------------
 #subheader for explicit vs non-explicit
-st.subheader("🔥 Average Popularity: Explicit vs Non-Explicit")
+st.subheader("Pie Chart:🔥 Average Popularity: Explicit vs Non-Explicit")
 popularity_explicit = df.groupby('explicit')['popularity'].mean().reset_index()
 popularity_explicit['explicit'] = popularity_explicit['explicit'].replace({True: 'Explicit', False: 'Non-Explicit'})
 
@@ -108,7 +109,7 @@ fig_exp = px.pie(popularity_explicit,
 st.plotly_chart(fig_exp, use_container_width=True)
 
 #------------------Popularity vs Track Duration---------------------------------------
-st.subheader("🌀Popularity vs Track Duration (in minutes)")
+st.subheader("Scatter Plot:🌀Popularity vs Track Duration (in minutes)")
 
 df['duration_min'] = df['duration_ms'] / 60000
 
@@ -120,7 +121,7 @@ st.plotly_chart(fig_pop_dur, use_container_width=True)
 
 #------------------Most Common Genres------------------------------------------------
 #subheader for most common genres
-st.subheader("🎷 Most Common Genres in the Dataset")
+st.subheader("Bar Chart:🎷 Most Common Genres in the Dataset")
 
 genre_count = df['genre'].value_counts().head(10).reset_index() # Count the number of tracks per genre and get the top 10 genres
 genre_count.columns = ['genre', 'count']
@@ -133,4 +134,4 @@ st.plotly_chart(fig_genre, use_container_width=True)
 #-------------------- Footer--------------------------------------------------------
 
 st.markdown("---")
-st.markdown("💡Built by Shruti Bajpai | Dataset of Spotify | 📊 Powered by Streamlit + Plotly")
+st.markdown(""" <p style = "text-align:center;">💡Built by Shruti Bajpai ❤️| Dataset of Spotify from Kaggle | 📊 Powered by Python, Streamlit & Plotly | 10 July, 2025</p>""", unsafe_allow_html=True)
