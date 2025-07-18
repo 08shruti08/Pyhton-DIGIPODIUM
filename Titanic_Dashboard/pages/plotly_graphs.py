@@ -3,14 +3,15 @@ import pandas as pd
 import seaborn as sns
 import plotly.express as px
 
-st.set_page_config(page_title="Titanic Dashboard")
+st.set_page_config(page_title="Titanic Dashboard", layout="wide")
 
 
 st.markdown(""" <h1 style = "text-align: center; color: White;">Unlocking the Story Behind the Numbers 🚢</h1>
-            <p style = "text-align: left; color: Yellow; font-size:20px;">🎯 The Titanic dataset tells a powerful story of how Social class, Gender, and Age affected survival during one of history’s most tragic disasters. Through these visualizations, we uncover insights not only for data analysis — but for human empathy and decision-making.</p>""", unsafe_allow_html=True)
+            <p style = "text-align: left; color: Yellow; font-size:20px;">🎯 The Titanic dataset tells a powerful story of how Social class, Gender, and Age affected survival during one of history’s most tragic disasters. Through these visualizations, we uncover insights not only for data analysis — but for human empathy and decision-making.</p>
+            """, unsafe_allow_html=True)
 
 st.title("Titanic Dataset")   
-st.write("This is a dashboard for analyzing the Titanic dataset.") 
+#st.write("This is a dashboard for analyzing the Titanic dataset.") 
 
 df = sns.load_dataset("titanic")    
 st.dataframe(df)        
@@ -42,6 +43,8 @@ filtered_df = df[
     (df['class'].isin(pclass)) & # Filter by passenger class
     (df['age'] >= min_age) & (df['age'] <= max_age) # Filter by age range
 ]
+
+st.markdown("""<h1 style ="text-align:center; color:lightblue;">Data-Driven Insights from the Titanic Tragedy</h1>""", unsafe_allow_html=True)
 
 # create plotly graphs for tittanic dataset
 
