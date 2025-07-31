@@ -61,7 +61,7 @@ menuinst @ file:///C:/b/abs_fblttj5gp1/croot/menuinst_1738943438301/work
 narwhals==1.43.1
 nbformat==5.10.4
 nest-asyncio==1.6.0
-numpy==2.2.6
+numpy==1.26.4
 orjson==3.10.18
 packaging @ file:///C:/b/abs_3by6s2fa66/croot/packaging_1734472138782/work
 pandas==2.3.0
