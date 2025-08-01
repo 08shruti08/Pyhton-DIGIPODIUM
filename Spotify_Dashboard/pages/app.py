@@ -17,6 +17,8 @@ def load_data():
     return df
 df = load_data()
 
+
+sns.set(style="whitegrid") # To Set the style for seaborn plots
 #-------------------Show data preview----------------------------------------------------------------
 st.markdown(""" <h1 style="color:lightgreen;">🎧Spotify Dashboard | A Comprehensive Collection of Tracks Across Various Genres🎼</h1>""", unsafe_allow_html = True)
 st.header("Explore the World of Music with Our Extensive Spotify Dataset")
