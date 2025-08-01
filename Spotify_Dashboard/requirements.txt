@@ -4,4 +4,4 @@ matplotlib==3.10.3
 seaborn==0.13.2
 plotly==6.1.2
 numpy==1.26.4
-scikit-learn==1.2.2
+scikit-learn==1.2.2seaborn 
